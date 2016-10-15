@@ -115,27 +115,49 @@ var work= {
 		]
 		}
 
-for(works in work.jobs)
+function displayWork()
 {
+work.jobs.forEach(function(job) {
+
 	$("#workExperience").append(HTMLworkStart);
 
-	var formattedWorkemployer= HTMLworkEmployer.replace("%data%",work.jobs[works].employer);
-	var formattedWorktitle=HTMLworkTitle.replace("%data%",work.jobs[works].title);
+	var formattedWorkemployer= HTMLworkEmployer.replace("%data%",job.employer);
+	var formattedWorktitle=HTMLworkTitle.replace("%data%",job.title);
 	var wrkconcat=formattedWorkemployer+formattedWorktitle;
 	$(".work-entry:last").append(wrkconcat);
 
-	var formattedDates = HTMLworkDates.replace("%data%",work.jobs[works].dates);
+	var formattedDates = HTMLworkDates.replace("%data%",job.dates);
 	$(".work-entry:last").append(formattedDates);
 
-	var formattedworkLocation = HTMLworkLocation.replace("%data%",work.jobs[works].location);
+	var formattedworkLocation = HTMLworkLocation.replace("%data%",job.location);
 	$(".work-entry:last").append(formattedworkLocation);
 
-	var formattedDescription= HTMLworkDescription.replace("%data%",work.jobs[works].description);
+	var formattedDescription= HTMLworkDescription.replace("%data%",job.description);
 	$(".work-entry:last").append(formattedDescription);
-
-
+});
 }
 
+displayWork();
+
+$(document).click(function(loc) {
+	var x = loc.pageX;
+	var y = loc.pageY;
+
+  logClicks(x,y);
+});
+
+// INTERNATIONALIZE NAME 
+/*
+$("#main").append(internationalizeButton);
+
+function inName(name)
+{
+	name=name.trim();
+	console.log(name);
+	var nameArray= name.split(" ");
+	iName= nameArray[0].slice(0,1).toUpperCase()+nameArray[0].slice(1).toLowerCase()+" "+nameArray[1].toUpperCase();
+	return iName;
+}*/
 
 
 
@@ -170,28 +192,48 @@ for(works in work.jobs)
 // 		}
 // };
 
-// var projects={
-// 	[
-// 		{
-// 			"title": "College ERP",
-// 			"dates": "2015-16",
-// 			"description": "An ERP for college which enables management of all the departments easier and central."
-// 		},
-// 		{
-// 			"title": "Droid Control",
-// 			"dates": "2016",
-// 			"description": "An android application which enables control of a pick and place robot using bluetooth connection."
-// 		},
-// 		{
-// 			"title": "Call Blocker",
-// 			"dates": "2015",
-// 			"description": "An android application which is helpful in blocking unwanted or unknown calls,"
-// 		},
-// 		{
-// 			"title": "Lecture Distribution System",
-// 			"dates": "2014",
-// 			"description": "A .net based project which is used to distribute the notes provided by the professors."
-// 		}		
-// 	]
-// };
+var projects={
+
+	"projects" : [
+		{
+			"title": "College ERP",
+			"dates": "2015-16",
+			"description": "An ERP for college which enables management of all the departments easier and central."
+		},
+		{
+			"title": "Droid Control",
+			"dates": "2016",
+			"description": "An android application which enables control of a pick and place robot using bluetooth connection."
+		},
+		{
+			"title": "Call Blocker",
+			"dates": "2015",
+			"description": "An android application which is helpful in blocking unwanted or unknown calls,"
+		},
+		{
+			"title": "Lecture Distribution System",
+			"dates": "2014",
+			"description": "A .net based project which is used to distribute the notes provided by the professors."
+		}		
+	]
+}
+
+projects.display= function() {
+
+	for(list in projects.projects) {
+
+			$("#projects").append(HTMLprojectStart);
+
+			var formattedprojectTitle= HTMLprojectTitle.replace("%data%",projects.projects[list].title);
+			var formattedprojectDates= HTMLprojectDates.replace("%data%",projects.projects[list].dates);
+			var formattedprojectDesc= HTMLprojectDescription.replace("%data%",projects.projects[list].description);
+
+			$(".project-entry:last").append(formattedprojectTitle);
+			$(".project-entry:last").append(formattedprojectDates);
+			$(".project-entry:last").append(formattedprojectDesc);
+
+		}
+}
+
+projects.display();
 
