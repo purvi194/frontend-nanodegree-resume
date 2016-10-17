@@ -51,7 +51,7 @@ var bio = {
 		"mobile" : "123-456-7890",
 		"email" : "purvi194@gmail.com",
 		"github" : "purvi194",
-		"location" : "India"
+		"location" : "Indore, Madhya Pradesh, India"
 		},
 	"object": "I want to succeed in a stimulating and challenging environment where I can use "
 				+"my skills and knowledge for organizational as well as personal growth.",	
@@ -161,36 +161,75 @@ function inName(name)
 
 
 
-// var education= {
-// 	"school": {
-// 		[
-// 			{
-// 				"Name" : "Queens College",
-// 				"location" : "Indore, Madhya Pradesh, India",
-// 				"degree dates" : "2001-12",
-// 				"major": "NA"
+var education= {
+	"schools": 
+		[
+			{
+				"name" : "Queens College",
+				"location" : "Indore, Madhya Pradesh, India",
+				"dates" : "2001-12",
+				"major": "NA",
+				"degree": "Matriculate"
 				
-// 			},
-// 			{
-// 				"name": "Poornima Institute of Engineering and Technology",		
-// 				"location": "Jaipur, Rajasthan, India",
-// 				"degree dates": "2012-16",
-// 				"major": "Computer Science"
-// 			}
-// 			]
-// 		},
+			},
+			{
+				"name": "Poornima Institute of Engineering and Technology",		
+				"location": "Jaipur, Rajasthan, India",
+				"dates": "2012-16",
+				"major": "Computer Science",
+				"degree": "Bachelors in Technology(Computer Science)"
+			}
+		],
 			
-// 	"online courses": { 
-// 		[
-// 			{
-// 				"title": "Front-End Web Developer",
-// 				"school": "Udacity",
-// 				"dates": "2016",
-// 				"url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001?v=fe3"
-// 			}
-// 		]
-// 		}
-// };
+	"online_courses":
+		[
+			{
+				"title": "Front-End Web Developer",
+				"school": "Udacity",
+				"dates": "2016-present",
+				"url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001?v=fe3"
+			}
+		]
+};
+
+education.display= function() {
+
+	education.schools.forEach(function(schools) {
+
+		$("#education").append(HTMLschoolStart);
+
+		formattedSchoolname= HTMLschoolName.replace("%data%",schools.name);
+		formattedSchoolLoc= HTMLschoolLocation.replace("%data%",schools.location);
+		formattedSchooldates= HTMLschoolDates.replace("%data%",schools.dates);
+		formattedSchoolmajor= HTMLschoolMajor.replace("%data%",schools.major);
+		formattedSchooldegree= HTMLschoolDegree.replace("%data%", schools.degree);
+
+		$(".education-entry:last").append(formattedSchoolname);
+		$(".education-entry:last").append(formattedSchooldegree);
+		$(".education-entry:last").append(formattedSchooldates);
+		$(".education-entry:last").append(formattedSchoolLoc);
+		$(".education-entry:last").append(formattedSchoolmajor);
+
+	});
+
+	$(".education-entry:last").append(HTMLonlineClasses);
+
+	education.online_courses.forEach(function(courses) {
+
+		formattedCoursetitle= HTMLonlineTitle.replace("%data%",courses.title);
+		formattedCourseschool= HTMLonlineSchool.replace("%data%",courses.school);
+		formattedCoursedates= HTMLonlineDates.replace("%data%",courses.dates);
+		formattedCourseURL= HTMLonlineURL.replace("%data%",courses.url);
+
+		$(".education-entry:last").append(formattedCoursetitle);
+		$(".education-entry:last").append(formattedCourseschool);
+		$(".education-entry:last").append(formattedCoursedates);
+		$(".education-entry:last").append(formattedCourseURL);
+	});
+
+}
+
+education.display();
 
 var projects={
 
@@ -220,20 +259,23 @@ var projects={
 
 projects.display= function() {
 
-	for(list in projects.projects) {
+	projects.projects.forEach(function(list) {
 
 			$("#projects").append(HTMLprojectStart);
 
-			var formattedprojectTitle= HTMLprojectTitle.replace("%data%",projects.projects[list].title);
-			var formattedprojectDates= HTMLprojectDates.replace("%data%",projects.projects[list].dates);
-			var formattedprojectDesc= HTMLprojectDescription.replace("%data%",projects.projects[list].description);
+			var formattedprojectTitle= HTMLprojectTitle.replace("%data%",list.title);
+			var formattedprojectDates= HTMLprojectDates.replace("%data%",list.dates);
+			var formattedprojectDesc= HTMLprojectDescription.replace("%data%",list.description);
 
 			$(".project-entry:last").append(formattedprojectTitle);
 			$(".project-entry:last").append(formattedprojectDates);
 			$(".project-entry:last").append(formattedprojectDesc);
 
-		}
+		});
 }
 
 projects.display();
+
+
+$("#mapDiv").append(googleMap);
 
