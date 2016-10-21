@@ -53,48 +53,48 @@ var bio = {
 		"github" : "purvi194",
 		"location" : "Indore, Madhya Pradesh, India"
 		},
-	"object": "I want to succeed in a stimulating and challenging environment where I can use "
-				+"my skills and knowledge for organizational as well as personal growth.",	
 	"skills" :  skills
 };
 
-var formattedName= HTMLheaderName.replace("%data%",bio.name);
-var formattedRole= HTMLheaderRole.replace("%data%",bio.role);
-var formattedMobile= HTMLmobile.replace("%data%",bio.contacts.mobile);
-var formattedMEmail= HTMLemail.replace("%data%",bio.contacts.email);
-var formattedGithub= HTMLgithub.replace("%data%",bio.contacts.github);
-var formattedLocation= HTMLlocation.replace("%data%",bio.contacts.location);
+bio.display=function(){
+	var formattedName= HTMLheaderName.replace("%data%",bio.name);
+	var formattedRole= HTMLheaderRole.replace("%data%",bio.role);
+	var formattedMobile= HTMLmobile.replace("%data%",bio.contacts.mobile);
+	var formattedMEmail= HTMLemail.replace("%data%",bio.contacts.email);
+	var formattedGithub= HTMLgithub.replace("%data%",bio.contacts.github);
+	var formattedLocation= HTMLlocation.replace("%data%",bio.contacts.location);
+	var formattedBiopic= HTMLbioPic.replace("%data%",bio.bioPic);
+	var formattedWelcomeMsg= HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage);
 
-var formattedBiopic= HTMLbioPic.replace("%data%",bio.bioPic);
-var formattedWelcomeMsg= HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage);
+	$("#header").prepend(formattedRole);
+	$("#header").prepend(formattedName);
 
+	$("#topContacts").append(formattedMobile);
+	$("#topContacts").append(formattedMEmail);
+	$("#topContacts").append(formattedGithub);
+	$("#topContacts").append(formattedLocation);
 
+	$("#header").append(formattedBiopic);
+	$("#header").append(formattedWelcomeMsg);
 
+	if(bio.skills.length > 0)
+	{
+		$("#header").append(HTMLskillsStart);
 
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
+		var formattedSkills= HTMLskills.replace("%data%",bio.skills[0]);
+		$("#skills").append(formattedSkills);
 
-$("#topContacts").append(formattedMobile);
-$("#topContacts").append(formattedMEmail);
-$("#topContacts").append(formattedGithub);
-$("#topContacts").append(formattedLocation);
+		formattedSkills= HTMLskills.replace("%data%",bio.skills[1]);
+		$("#skills").append(formattedSkills);
 
-$("#header").append(formattedBiopic);
-$("#header").append(formattedWelcomeMsg);
+		formattedSkills= HTMLskills.replace("%data%",bio.skills[2]);
+		$("#skills").append(formattedSkills);
+	}
 
-if(bio.skills.length > 0)
-{
-	$("#header").append(HTMLskillsStart);
+};
 
-	var formattedSkills= HTMLskills.replace("%data%",bio.skills[0]);
-	$("#skills").append(formattedSkills);
+bio.display();
 
-	formattedSkills= HTMLskills.replace("%data%",bio.skills[1]);
-	$("#skills").append(formattedSkills);
-
-	formattedSkills= HTMLskills.replace("%data%",bio.skills[2]);
-	$("#skills").append(formattedSkills);
-}
 
 var work= {
 		"jobs":	[
@@ -115,8 +115,7 @@ var work= {
 		]
 		}
 
-function displayWork()
-{
+work.display=function() {
 work.jobs.forEach(function(job) {
 
 	$("#workExperience").append(HTMLworkStart);
@@ -135,9 +134,9 @@ work.jobs.forEach(function(job) {
 	var formattedDescription= HTMLworkDescription.replace("%data%",job.description);
 	$(".work-entry:last").append(formattedDescription);
 });
-}
+};
 
-displayWork();
+work.display();
 
 $(document).click(function(loc) {
 	var x = loc.pageX;
@@ -147,7 +146,7 @@ $(document).click(function(loc) {
 });
 
 // INTERNATIONALIZE NAME 
-/*
+
 $("#main").append(internationalizeButton);
 
 function inName(name)
@@ -157,7 +156,7 @@ function inName(name)
 	var nameArray= name.split(" ");
 	iName= nameArray[0].slice(0,1).toUpperCase()+nameArray[0].slice(1).toLowerCase()+" "+nameArray[1].toUpperCase();
 	return iName;
-}*/
+}
 
 
 
@@ -169,7 +168,8 @@ var education= {
 				"location" : "Indore, Madhya Pradesh, India",
 				"dates" : "2001-12",
 				"major": "NA",
-				"degree": "Matriculate"
+				"degree": "Matriculate",
+				"url": "http://www.queenscollegeindore.org"
 				
 			},
 			{
@@ -177,7 +177,8 @@ var education= {
 				"location": "Jaipur, Rajasthan, India",
 				"dates": "2012-16",
 				"major": "Computer Science",
-				"degree": "Bachelors in Technology(Computer Science)"
+				"degree": "Bachelors in Technology(Computer Science)",
+				"url": "http://www.poornima.org"
 			}
 		],
 			
@@ -237,22 +238,27 @@ var projects={
 		{
 			"title": "College ERP",
 			"dates": "2015-16",
-			"description": "An ERP for college which enables management of all the departments easier and central."
+			"description": "An ERP for college which enables management of all the departments easier and central.",
+			"image":"images/erp.jpg"
+
 		},
 		{
 			"title": "Droid Control",
 			"dates": "2016",
-			"description": "An android application which enables control of a pick and place robot using bluetooth connection."
+			"description": "An android application which enables control of a pick and place robot using bluetooth connection.",
+			"image":"images/droid.jpg"
 		},
 		{
 			"title": "Call Blocker",
 			"dates": "2015",
-			"description": "An android application which is helpful in blocking unwanted or unknown calls,"
+			"description": "An android application which is helpful in blocking unwanted or unknown calls,",
+			"image":"images/blocker.jpg"
 		},
 		{
 			"title": "Lecture Distribution System",
 			"dates": "2014",
-			"description": "A .net based project which is used to distribute the notes provided by the professors."
+			"description": "A .net based project which is used to distribute the notes provided by the professors.",
+			"image":"images/lectures.jpg"
 		}		
 	]
 }
@@ -266,10 +272,12 @@ projects.display= function() {
 			var formattedprojectTitle= HTMLprojectTitle.replace("%data%",list.title);
 			var formattedprojectDates= HTMLprojectDates.replace("%data%",list.dates);
 			var formattedprojectDesc= HTMLprojectDescription.replace("%data%",list.description);
+			var formattedprojectImage= HTMLprojectImage.replace("%data%",list.image);
 
 			$(".project-entry:last").append(formattedprojectTitle);
 			$(".project-entry:last").append(formattedprojectDates);
 			$(".project-entry:last").append(formattedprojectDesc);
+			$(".project-entry:last").append(formattedprojectImage);
 
 		});
 }
