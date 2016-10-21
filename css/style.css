@@ -125,9 +125,9 @@ a {
   clear:both;
 }
 
-.dark-gray {
+/*.dark-gray {
   background-color: #4a4a4a;
-}
+}*/
 
 /* TODO: Replace with image later */
 #header {
@@ -151,7 +151,7 @@ a {
 }
 
 .center-content {
-  padding: 2.5% 5%;
+  padding: 1% 5%;
 }
 
 ul {
@@ -175,6 +175,7 @@ span {
 
 #lets-connect {
   text-align: center;
+  background-color: #032656;
 }
 
 /* Media queries to handle various device widths */
