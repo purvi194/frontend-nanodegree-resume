@@ -1,3 +1,13 @@
+// Hello.
+//
+// This is JSHint, a tool that helps to detect errors and potential
+// problems in your JavaScript code.
+//
+// To start, simply enter some JavaScript anywhere on this page. Your
+// report will appear on the right side.
+//
+// Additionally, you can toggle specific options in the Configure
+// menu.
 /*
 This is empty on purpose! Your code to build the resume will go here.
  */
@@ -28,7 +38,7 @@ This is empty on purpose! Your code to build the resume will go here.
 // 	"city" : "San Francisco"
 // }
 var data = '%data%';
-var skills = ["Programming", "Content Writing", "Reading"]
+var skills = ["Programming", "Content Writing", "Reading"];
 
 var bio = {
     "name": "Purvi Bansal",
@@ -96,7 +106,7 @@ var work = {
         "dates": "August 2014-August 2016",
         "description": "Maintanance and updation of the database"
     }]
-}
+};
 
 work.display = function() {
     work.jobs.forEach(function(job) {
@@ -203,7 +213,7 @@ education.display = function() {
         $(".education-entry:last").append(formattedCourseURL);
     });
 
-}
+};
 
 education.display();
 
@@ -231,7 +241,7 @@ var projects = {
         "description": "A .net based project which is used to distribute the notes provided by the professors.",
         "images": ["images/lectures.jpg", "images/lectures2.jpg"]
     }]
-}
+};
 
 projects.display = function() {
 
@@ -252,7 +262,7 @@ projects.display = function() {
             $(".project-entry:last").append(formattedprojectImage);
         });
     });
-}
+};
 
 projects.display();
 
